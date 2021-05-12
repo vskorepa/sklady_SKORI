@@ -6,7 +6,6 @@ import { CacheProvider } from "@emotion/react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import createCache from "@emotion/cache";
 import theme from "../src/theme";
-import NavBar from "../components/Header/TopNav";
 
 export const cache = createCache({ key: "css", prepend: true });
 

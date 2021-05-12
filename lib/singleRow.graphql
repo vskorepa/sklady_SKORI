@@ -1,0 +1,42 @@
+query SingleRow($id: Int!) {
+  singleRow(id: $id) {
+    id
+    name
+    code
+    count
+    description
+  }
+}
+
+mutation AddSingleRow(
+  $id: Int!
+  $name: String!
+  $code: String!
+  $description: String
+  $count: Int!
+) {
+  AddSingleRow(
+    id: $id
+    name: $name
+    code: $code
+    description: $description
+    count: $count
+  ) {
+    id
+    name
+    code
+    count
+    description
+  }
+}
+mutation DeleteSingleRow($id: Int!) {
+  deleteSingleRow(id: $id) {
+    id
+  }
+}
+mutation editCount($id: Int!, $count: Int!) {
+  editCount(id: $id, count: $count) {
+    id
+    count
+  }
+}

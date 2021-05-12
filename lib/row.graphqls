@@ -1,0 +1,7 @@
+type Row {
+  id: Int!
+  name: String!
+  code: String!
+  description: String
+  count: Int!
+}

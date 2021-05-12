@@ -1,0 +1,8 @@
+query MultipleRows {
+  multipleRows {
+    name
+    id
+    code
+    count
+  }
+}

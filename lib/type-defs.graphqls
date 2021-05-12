@@ -1,0 +1,16 @@
+type Query {
+  singleRow(id: Int!): Row!
+  multipleRows: [Row!]!
+}
+
+type Mutation {
+  AddSingleRow(
+    id: Int!
+    name: String!
+    code: String!
+    description: String
+    count: Int!
+  ): Row!
+  deleteSingleRow(id: Int!): Row!
+  editCount(id: Int!, count: Int!): Row!
+}
