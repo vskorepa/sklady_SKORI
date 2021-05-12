@@ -15,20 +15,13 @@ import {
 import { MultipleRowsDocument } from "../../lib/multipleRows.graphql";
 import { useMultipleRowsQuery } from "../../lib/multipleRows.graphql";
 import { EditButton, DeleteButton, AddButton } from "../atomic/Buttons";
+import { SingleRow } from "./SingleRow";
+import { RowHead } from "./TableHead";
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
-    fontSize: "20px",
-    fontWeight: 100,
   },
-  tableheadtext: {
-    fontSize: "19px",
-    fontWeight: 600,
-    color: "white",
-  },
-  tablehead: {
-    backgroundColor: "#ff1f1f",
-  },
+
   content: {
     paddingTop: "74px",
     margin: "0px 10px 10px 10px",
@@ -38,7 +31,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BasicTable() {
+export const BasicTable: React.FC = () => {
   const classes = useStyles();
   const [deleteRow] = useDeleteSingleRowMutation();
   const [editCount] = useEditCountMutation();
@@ -89,53 +82,24 @@ export default function BasicTable() {
       <div className={classes.content}>
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table">
-            <TableHead className={classes.tablehead}>
-              <TableRow>
-                <TableCell className={classes.tableheadtext}>Kód</TableCell>
-                <TableCell className={classes.tableheadtext} align="right">
-                  Název
-                </TableCell>
-                <TableCell className={classes.tableheadtext} align="right">
-                  Počet
-                </TableCell>
-                <TableCell
-                  className={classes.tableheadtext}
-                  align="right"
-                ></TableCell>
-                <TableCell
-                  className={classes.tableheadtext}
-                  align="right"
-                  width="50px"
-                >
-                  <AddButton />
-                </TableCell>
-                <TableCell
-                  className={classes.tableheadtext}
-                  align="right"
-                  width="50px"
-                ></TableCell>
-              </TableRow>
-            </TableHead>
+            <RowHead />
             <TableBody>
-              {data.multipleRows.map((row: Row) => (
-                <TableRow key={row.id}>
-                  <TableCell component="th" scope="row">
-                    {row.code}
-                  </TableCell>
-                  <TableCell align="right">{row.name}</TableCell>
-                  <TableCell align="right">{row.count}</TableCell>
-                  <TableCell align="right">
-                    <EditButton />
-                  </TableCell>
-                  <TableCell align="right">
-                    <DeleteButton />
-                  </TableCell>
-                </TableRow>
-              ))}
+              {data.multipleRows
+                .filter((x: Row) => !!x)
+                .map((item: Row) => (
+                  <SingleRow
+                    key={item.id}
+                    {...item}
+                    editItem={deleteItem}
+                    deleteItem={deleteItem}
+                    pluscount={plusCount}
+                    minuscount={minusCount}
+                  />
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
       </div>
     );
   }
-}
+};

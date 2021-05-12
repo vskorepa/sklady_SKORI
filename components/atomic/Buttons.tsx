@@ -4,14 +4,32 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddBoxOutlinedIcon from "@material-ui/icons/AddBoxOutlined";
+import KeyboardArrowDownOutlinedIcon from "@material-ui/icons/KeyboardArrowDownOutlined";
+import KeyboardArrowUpOutlinedIcon from "@material-ui/icons/KeyboardArrowUpOutlined";
+import IconButton from "@material-ui/core/IconButton";
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
       margin: theme.spacing(1),
     },
+    editcount: {
+      display: "flex",
+      flexDirection: "column",
+      width: "30px",
+    },
   })
 );
-export const DeleteButton: React.FC = () => {
+
+type ButtonsProps = {
+  event: () => void;
+};
+type EditCountButtonsProps = {
+  pluscount: () => void;
+  minuscount: () => void;
+};
+
+export const DeleteButton: React.FC<ButtonsProps> = ({ event }) => {
   const classes = useStyles();
 
   return (
@@ -20,13 +38,14 @@ export const DeleteButton: React.FC = () => {
       color="secondary"
       className={classes.button}
       startIcon={<DeleteIcon />}
+      onClick={() => event()}
     >
       Smazat
     </Button>
   );
 };
 
-export const EditButton: React.FC = () => {
+export const EditButton: React.FC<ButtonsProps> = ({ event }) => {
   const classes = useStyles();
 
   return (
@@ -35,6 +54,7 @@ export const EditButton: React.FC = () => {
       color="secondary"
       className={classes.button}
       startIcon={<EditIcon />}
+      onClick={() => event()}
     >
       Upravit
     </Button>
@@ -52,5 +72,23 @@ export const AddButton: React.FC = () => {
     >
       Přidat
     </Button>
+  );
+};
+
+export const EditCountButtons: React.FC<EditCountButtonsProps> = ({
+  pluscount,
+  minuscount,
+}) => {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.editcount}>
+      <IconButton onClick={() => pluscount()}>
+        <KeyboardArrowUpOutlinedIcon />
+      </IconButton>
+      <IconButton onClick={() => minuscount()}>
+        <KeyboardArrowDownOutlinedIcon />
+      </IconButton>
+    </div>
   );
 };

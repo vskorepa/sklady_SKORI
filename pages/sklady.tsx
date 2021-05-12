@@ -1,9 +1,9 @@
 import React from "react";
 import NavBar from "../components/Header/TopNav";
-import BasicTable from "../components/sklady/RowsTable";
+import { BasicTable } from "../components/sklady/RowsTable";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
   },
