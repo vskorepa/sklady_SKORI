@@ -5,15 +5,14 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
-import { ListLinks } from "../SideBar/NavList";
+import { ListLinks } from "./SideBar/NavList";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import Link from "next/link";
 
 const drawerWidth = 240;
 
@@ -76,15 +75,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: "100vh",
-    overflow: "auto",
-  },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
 }));
 
 const NavBar: React.FC = () => {
@@ -117,18 +107,22 @@ const NavBar: React.FC = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
-            SKORI sklady
-          </Typography>
-          <IconButton color="inherit">
-            <AccountCircleIcon />
-          </IconButton>
+          <Link href="/">
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              className={classes.title}
+            >
+              SKORI sklady
+            </Typography>
+          </Link>
+          <Link href="profile">
+            <IconButton color="inherit">
+              <AccountCircleIcon />
+            </IconButton>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -147,7 +141,6 @@ const NavBar: React.FC = () => {
         <Divider />
         <ListLinks />
       </Drawer>
-      <div className={classes.content}></div>
     </div>
   );
 };

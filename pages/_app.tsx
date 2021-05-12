@@ -6,6 +6,7 @@ import { CacheProvider } from "@emotion/react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import createCache from "@emotion/cache";
 import theme from "../src/theme";
+import NavBar from "../components/Header/TopNav";
 
 export const cache = createCache({ key: "css", prepend: true });
 
@@ -23,7 +24,7 @@ export default function MyApp(props: AppProps) {
   return (
     <CacheProvider value={cache}>
       <Head>
-        <title>My page</title>
+        <title>SKORI sklady</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
