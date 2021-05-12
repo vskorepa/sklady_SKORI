@@ -27,7 +27,7 @@ export const ListLinks: React.FC = () => {
             <ListItemIcon>
               <ListAltIcon />
             </ListItemIcon>
-            <ListItemText primary="Slady" />
+            <ListItemText primary="Sklady" />
           </ListItem>
         </Link>
         <Link href="reklamace">
