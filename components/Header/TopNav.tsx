@@ -53,16 +53,6 @@ const useStyles = makeStyles((theme) => ({
   },
 
   appBarSpacer: theme.mixins.toolbar,
-
-  content: {
-    flexGrow: 1,
-    height: "100vh",
-    overflow: "auto",
-  },
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
 }));
 
 const NavBar: React.FC = () => {
@@ -114,8 +104,6 @@ const NavBar: React.FC = () => {
         </Toolbar>
       </AppBar>
       <SideNav open={open} DrawerClose={handleDrawerClose}></SideNav>
-
-      <main className={classes.content}></main>
     </div>
   );
 };
