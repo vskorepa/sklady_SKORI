@@ -1,6 +1,6 @@
 type Query {
   singleRow(id: Int!): Row!
-  multipleRows: [Row!]!
+  multipleRows(storage: String!): [Row!]!
 }
 
 type Mutation {

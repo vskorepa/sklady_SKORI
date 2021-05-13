@@ -2,19 +2,14 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { Row } from "../types";
 import {
   useDeleteSingleRowMutation,
   useEditCountMutation,
 } from "../../__generated__/lib/singleRow.graphql";
-import { MultipleRowsDocument } from "../../lib/multipleRows.graphql";
 import { useMultipleRowsQuery } from "../../lib/multipleRows.graphql";
-import { EditButton, DeleteButton, AddButton } from "../atomic/Buttons";
 import { SingleRow } from "./SingleRow";
 import { RowHead } from "./TableHead";
 const useStyles = makeStyles({
@@ -35,14 +30,18 @@ export const BasicTable: React.FC = () => {
   const classes = useStyles();
   const [deleteRow] = useDeleteSingleRowMutation();
   const [editCount] = useEditCountMutation();
-  const { loading, error, data } = useMultipleRowsQuery();
+
+  const { loading, error, data, refetch } = useMultipleRowsQuery({
+    variables: { storage: "rows" },
+  });
+
   const deleteItem = async (id: number) => {
     await deleteRow({
       variables: {
         id: id,
       },
-      refetchQueries: [{ query: MultipleRowsDocument }],
     });
+    refetch();
   };
 
   const plusCount = async (id: number, count: number) => {

@@ -1,5 +1,5 @@
-query MultipleRows {
-  multipleRows {
+query MultipleRows($storage: String!) {
+  multipleRows(storage: $storage) {
     name
     id
     code

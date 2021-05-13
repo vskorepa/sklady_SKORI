@@ -46,7 +46,7 @@ export const RowHead: React.FC = () => {
         <TableCell
           className={classes.tableheadtext}
           align="right"
-          width="50px"
+          width="100px"
         ></TableCell>
       </TableRow>
     </TableHead>
