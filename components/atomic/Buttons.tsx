@@ -49,7 +49,7 @@ export const DeleteButton: React.FC<ButtonsProps> = ({ event }) => {
   );
 };
 
-export const EditButton: React.FC<ButtonsProps> = ({ event }) => {
+export const EditButton: React.FC = () => {
   const classes = useStyles();
 
   return (
@@ -58,7 +58,6 @@ export const EditButton: React.FC<ButtonsProps> = ({ event }) => {
       color="secondary"
       className={classes.button}
       startIcon={<EditIcon />}
-      onClick={() => event()}
     >
       Upravit
     </Button>

@@ -105,7 +105,6 @@ export const BasicTable: React.FC = () => {
                   <SingleRow
                     key={item.id}
                     {...item}
-                    editItem={deleteItem}
                     deleteItem={deleteItem}
                     pluscount={plusCount}
                     minuscount={minusCount}

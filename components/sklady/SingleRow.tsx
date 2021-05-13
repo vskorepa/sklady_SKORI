@@ -14,8 +14,6 @@ const useStyles = makeStyles({
 
 type RowProps = Row & {
   deleteItem: (id: number) => void;
-  editItem: (id: number) => void;
-
   pluscount: (id: number, count: number) => void;
   minuscount: (id: number, count: number) => void;
 };
@@ -26,7 +24,6 @@ export const SingleRow: React.FC<RowProps> = ({
   count,
   name,
   deleteItem,
-  editItem,
   pluscount,
   minuscount,
 }) => {
@@ -51,7 +48,7 @@ export const SingleRow: React.FC<RowProps> = ({
       </TableCell>
 
       <TableCell className={classes.TableText} align="right">
-        <EditButton event={() => editItem(id)} />
+        <EditButton />
       </TableCell>
       <TableCell className={classes.TableText} align="right">
         <DeleteButton event={() => deleteItem(id)} />
