@@ -25,6 +25,13 @@ const useStyles = makeStyles({
     height: "100vh",
     overflow: "auto",
   },
+  SelectWraper: {
+    fontSize: "19px",
+    fontWeight: 600,
+    color: "white",
+    backgroundColor: "white",
+    borderRadius: "10px",
+  },
 });
 
 export const RowHead: React.FC = () => {
@@ -47,7 +54,9 @@ export const RowHead: React.FC = () => {
           className={classes.tableheadtext}
           align="right"
           width="100px"
-        ></TableCell>
+        >
+          <div className={classes.SelectWraper}></div>
+        </TableCell>
       </TableRow>
     </TableHead>
   );

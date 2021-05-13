@@ -12,6 +12,8 @@ import {
 import { useMultipleRowsQuery } from "../../lib/multipleRows.graphql";
 import { SingleRow } from "./SingleRow";
 import { RowHead } from "./TableHead";
+import { StorageSelect } from "./StorageSelect";
+
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -31,13 +33,23 @@ export const BasicTable: React.FC = () => {
   const [deleteRow] = useDeleteSingleRowMutation();
   const [editCount] = useEditCountMutation();
 
+  const [storage, changeStorage] = React.useState("Dusejov");
+
+  const handleStorageChange = async (
+    event: React.ChangeEvent<{ value: unknown }>
+  ) => {
+    await changeStorage(event.target.value as string);
+    refetch();
+  };
+
   const { loading, error, data, refetch } = useMultipleRowsQuery({
-    variables: { storage: "rows" },
+    variables: { storage: storage },
   });
 
   const deleteItem = async (id: number) => {
     await deleteRow({
       variables: {
+        storage: storage,
         id: id,
       },
     });
@@ -47,20 +59,20 @@ export const BasicTable: React.FC = () => {
   const plusCount = async (id: number, count: number) => {
     await editCount({
       variables: {
+        storage: storage,
         id: id,
         count: count + 1,
       },
     });
-    return count + 1;
   };
   const minusCount = async (id: number, count: number) => {
     await editCount({
       variables: {
+        storage: storage,
         id: id,
         count: count !== 0 ? count - 1 : count,
       },
     });
-    return count - 1;
   };
 
   if (loading) {
@@ -79,6 +91,10 @@ export const BasicTable: React.FC = () => {
   } else {
     return (
       <div className={classes.content}>
+        <StorageSelect
+          OnStorageChange={handleStorageChange}
+          storage={storage}
+        />
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table">
             <RowHead />

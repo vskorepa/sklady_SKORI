@@ -16,7 +16,11 @@ const useStyles = makeStyles((theme: Theme) =>
     editcount: {
       display: "flex",
       flexDirection: "column",
+      height: "auto",
       width: "30px",
+    },
+    countarrow: {
+      padding: "4px",
     },
   })
 );
@@ -83,10 +87,10 @@ export const EditCountButtons: React.FC<EditCountButtonsProps> = ({
 
   return (
     <div className={classes.editcount}>
-      <IconButton onClick={() => pluscount()}>
+      <IconButton className={classes.countarrow} onClick={() => pluscount()}>
         <KeyboardArrowUpOutlinedIcon />
       </IconButton>
-      <IconButton onClick={() => minuscount()}>
+      <IconButton className={classes.countarrow} onClick={() => minuscount()}>
         <KeyboardArrowDownOutlinedIcon />
       </IconButton>
     </div>

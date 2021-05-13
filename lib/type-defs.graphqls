@@ -10,7 +10,8 @@ type Mutation {
     code: String!
     description: String
     count: Int!
+    storage: String!
   ): Row!
-  deleteSingleRow(id: Int!): Row!
-  editCount(id: Int!, count: Int!): Row!
+  deleteSingleRow(id: Int!, storage: String!): Row!
+  editCount(id: Int!, count: Int!, storage: String!): Row!
 }

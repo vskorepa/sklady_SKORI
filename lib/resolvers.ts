@@ -11,7 +11,7 @@ const Duplicitycheck = (allRows: [Row], singleRow: Row) => {
 const Query: Required<QueryResolvers<ResolverContext>> = {
   multipleRows: async (_parent, _args, _context, _info) => {
     var rows: Array<Row> = [];
-    db.ref("" + _args.storage).on("value", function (snapshot: any) {
+    db.ref(_args.storage).on("value", function (snapshot: any) {
       rows = snapshot.val();
     });
     return rows;
@@ -27,7 +27,7 @@ const Query: Required<QueryResolvers<ResolverContext>> = {
 
 const Mutation: Required<MutationResolvers<ResolverContext>> = {
   AddSingleRow: async (_parent, _args, _context, _info) => {
-    db.ref("rows/" + _args.id).set({
+    db.ref(_args.storage + "/" + _args.id).set({
       code: _args.code,
       count: _args.count,
       description: _args.description,
@@ -37,11 +37,11 @@ const Mutation: Required<MutationResolvers<ResolverContext>> = {
     return _args;
   },
   deleteSingleRow: async (_parent, _args, _context, _info) => {
-    db.ref("rows/" + _args.id).remove();
+    db.ref(_args.storage + "/" + _args.id).remove();
     return _args;
   },
   editCount: async (_parent, _args, _context, _info) => {
-    db.ref("rows/" + _args.id).update({ count: _args.count });
+    db.ref(_args.storage + "/" + _args.id).update({ count: _args.count });
     return _args;
   },
 };
