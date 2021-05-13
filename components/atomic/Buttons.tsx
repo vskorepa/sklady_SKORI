@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "30px",
     },
     countarrow: {
-      padding: "4px",
+      padding: "2px",
     },
   })
 );

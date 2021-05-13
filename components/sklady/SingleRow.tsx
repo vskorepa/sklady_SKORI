@@ -37,7 +37,7 @@ export const SingleRow: React.FC<RowProps> = ({
       <TableCell className={classes.TableText} component="th" scope="row">
         {code}
       </TableCell>
-      <TableCell className={classes.TableText} align="right">
+      <TableCell className={classes.TableText} align="center">
         {name}
       </TableCell>
       <TableCell className={classes.TableText} align="right">

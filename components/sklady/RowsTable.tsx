@@ -16,7 +16,7 @@ import { StorageSelect } from "./StorageSelect";
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
+    minWidth: 840,
   },
 
   content: {

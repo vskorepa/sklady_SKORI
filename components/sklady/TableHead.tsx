@@ -40,23 +40,22 @@ export const RowHead: React.FC = () => {
     <TableHead className={classes.tablehead}>
       <TableRow>
         <TableCell className={classes.tableheadtext}>Kód</TableCell>
-        <TableCell className={classes.tableheadtext} align="right">
+        <TableCell className={classes.tableheadtext} align="center">
           Název
         </TableCell>
         <TableCell className={classes.tableheadtext} align="right">
           Počet
         </TableCell>
-        <TableCell className={classes.tableheadtext} align="right"></TableCell>
-        <TableCell className={classes.tableheadtext} align="right" width="50px">
+        <TableCell className={classes.tableheadtext} align="center"></TableCell>
+
+        <TableCell className={classes.tableheadtext} align="right">
           <AddButton />
         </TableCell>
         <TableCell
           className={classes.tableheadtext}
-          align="right"
-          width="100px"
-        >
-          <div className={classes.SelectWraper}></div>
-        </TableCell>
+          align="center"
+          width="70px"
+        ></TableCell>
       </TableRow>
     </TableHead>
   );
