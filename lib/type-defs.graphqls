@@ -1,5 +1,5 @@
 type Query {
-  singleRow(id: Int!): Row!
+  singleRow(id: Int!, storage: String!): Row!
   multipleRows(storage: String!): [Row!]!
 }
 

@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
-import { Row } from "../types";
 import {
   useDeleteSingleRowMutation,
   useEditCountMutation,
 } from "../../__generated__/lib/singleRow.graphql";
-import { useMultipleRowsQuery } from "../../lib/multipleRows.graphql";
+import { Row, useMultipleRowsQuery } from "../../lib/multipleRows.graphql";
 import { SingleRow } from "./SingleRow";
 import { RowHead } from "./TableHead";
 import { StorageSelect } from "./StorageSelect";
@@ -39,14 +38,18 @@ export const BasicTable: React.FC = () => {
     event: React.ChangeEvent<{ value: unknown }>
   ) => {
     await changeStorage(event.target.value as string);
-    refetch();
+    await refetch();
   };
 
   const { loading, error, data, refetch } = useMultipleRowsQuery({
     variables: { storage: storage },
   });
-
-  const deleteItem = async (id: number) => {
+  const [nextId, setNextId] = useState(0);
+  const getNewId = () => {
+    setNextId(nextId + 1);
+    return nextId - 1;
+  };
+  const deleteItem = async (id: number, storage: String) => {
     await deleteRow({
       variables: {
         storage: storage,
@@ -56,7 +59,7 @@ export const BasicTable: React.FC = () => {
     refetch();
   };
 
-  const plusCount = async (id: number, count: number) => {
+  const plusCount = async (id: number, count: number, storage: String) => {
     await editCount({
       variables: {
         storage: storage,
@@ -65,7 +68,7 @@ export const BasicTable: React.FC = () => {
       },
     });
   };
-  const minusCount = async (id: number, count: number) => {
+  const minusCount = async (id: number, count: number, storage: String) => {
     await editCount({
       variables: {
         storage: storage,
@@ -73,6 +76,25 @@ export const BasicTable: React.FC = () => {
         count: count !== 0 ? count - 1 : count,
       },
     });
+  };
+
+  const LoadRows = (rowdata: [Row]) => {
+    return rowdata
+      .filter((x) => !!x)
+      .map((item) => (
+        <SingleRow
+          key={item.id}
+          id={item.id}
+          code={item.code}
+          count={item.count}
+          name={item.name}
+          description={item.description ?? ""}
+          storage={storage}
+          deleteItem={deleteItem}
+          pluscount={plusCount}
+          minuscount={minusCount}
+        />
+      ));
   };
 
   if (loading) {
@@ -97,19 +119,20 @@ export const BasicTable: React.FC = () => {
         />
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table">
-            <RowHead />
+            <RowHead nextId={9} storage={storage} />
             <TableBody>
-              {data.multipleRows
-                .filter((x: Row) => !!x)
-                .map((item: Row) => (
-                  <SingleRow
-                    key={item.id}
-                    {...item}
-                    deleteItem={deleteItem}
-                    pluscount={plusCount}
-                    minuscount={minusCount}
-                  />
-                ))}
+              {data !== undefined
+                ? LoadRows(data.multipleRows)
+                : LoadRows([
+                    {
+                      code: "",
+                      name: "",
+                      count: 0,
+                      description: "",
+                      id: 0,
+                      storage: "Dusejov",
+                    },
+                  ])}
             </TableBody>
           </Table>
         </TableContainer>

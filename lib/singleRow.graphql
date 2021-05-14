@@ -1,5 +1,5 @@
-query SingleRow($id: Int!) {
-  singleRow(id: $id) {
+query SingleRow($id: Int!, $storage: String!) {
+  singleRow(id: $id, storage: $storage) {
     id
     name
     code

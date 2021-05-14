@@ -1,7 +1,8 @@
 export type Row = {
-  id: number
-  code: string
-  description?: string
-  count: number
-  name: string
-}
+  id: number;
+  code: string;
+  description?: string;
+  count: number;
+  name: string;
+  storage: String;
+};

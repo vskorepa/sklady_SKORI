@@ -4,5 +4,6 @@ query MultipleRows($storage: String!) {
     id
     code
     count
+    description
   }
 }

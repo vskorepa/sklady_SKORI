@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import { AddButton } from "../atomic/Buttons";
+import { AddRow } from "./AddRow";
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -33,8 +33,11 @@ const useStyles = makeStyles({
     borderRadius: "10px",
   },
 });
-
-export const RowHead: React.FC = () => {
+type RowHeadProps = {
+  nextId: number;
+  storage: String;
+};
+export const RowHead: React.FC<RowHeadProps> = ({ nextId, storage }) => {
   const classes = useStyles();
   return (
     <TableHead className={classes.tablehead}>
@@ -49,7 +52,7 @@ export const RowHead: React.FC = () => {
         <TableCell className={classes.tableheadtext} align="center"></TableCell>
 
         <TableCell className={classes.tableheadtext} align="right">
-          <AddButton />
+          <AddRow nextId={nextId} storage={storage} />
         </TableCell>
         <TableCell
           className={classes.tableheadtext}

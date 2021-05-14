@@ -4,4 +4,5 @@ type Row {
   code: String!
   description: String
   count: Int!
+  storage: String!
 }

@@ -3,8 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import { Row } from "../types";
-import { EditButton, DeleteButton, EditCountButtons } from "../atomic/Buttons";
-
+import { DeleteButton, EditCountButtons } from "../atomic/Buttons";
+import { EditRow } from "./EditRow";
 const useStyles = makeStyles({
   TableText: {
     fontSize: "19px",
@@ -13,9 +13,9 @@ const useStyles = makeStyles({
 });
 
 type RowProps = Row & {
-  deleteItem: (id: number) => void;
-  pluscount: (id: number, count: number) => void;
-  minuscount: (id: number, count: number) => void;
+  deleteItem: (id: number, storage: String) => void;
+  pluscount: (id: number, count: number, storage: String) => void;
+  minuscount: (id: number, count: number, storage: String) => void;
 };
 
 export const SingleRow: React.FC<RowProps> = ({
@@ -26,6 +26,8 @@ export const SingleRow: React.FC<RowProps> = ({
   deleteItem,
   pluscount,
   minuscount,
+  description,
+  storage,
 }) => {
   const classes = useStyles();
 
@@ -42,16 +44,23 @@ export const SingleRow: React.FC<RowProps> = ({
       </TableCell>
       <TableCell className={classes.TableText} align="left">
         <EditCountButtons
-          pluscount={() => pluscount(id, count)}
-          minuscount={() => minuscount(id, count)}
+          pluscount={() => pluscount(id, count, storage)}
+          minuscount={() => minuscount(id, count, storage)}
         />
       </TableCell>
 
       <TableCell className={classes.TableText} align="right">
-        <EditButton />
+        <EditRow
+          id={id}
+          description={description}
+          name={name}
+          code={code}
+          count={count}
+          storage={storage}
+        />
       </TableCell>
       <TableCell className={classes.TableText} align="right">
-        <DeleteButton event={() => deleteItem(id)} />
+        <DeleteButton event={() => deleteItem(id, storage)} />
       </TableCell>
     </TableRow>
   );

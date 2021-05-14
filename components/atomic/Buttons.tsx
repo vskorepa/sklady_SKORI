@@ -49,7 +49,7 @@ export const DeleteButton: React.FC<ButtonsProps> = ({ event }) => {
   );
 };
 
-export const EditButton: React.FC = () => {
+export const EditButton: React.FC<ButtonsProps> = ({ event }) => {
   const classes = useStyles();
 
   return (
@@ -58,12 +58,13 @@ export const EditButton: React.FC = () => {
       color="secondary"
       className={classes.button}
       startIcon={<EditIcon />}
+      onClick={() => event()}
     >
       Upravit
     </Button>
   );
 };
-export const AddButton: React.FC = () => {
+export const AddButton: React.FC<ButtonsProps> = ({ event }) => {
   const classes = useStyles();
 
   return (
@@ -72,6 +73,7 @@ export const AddButton: React.FC = () => {
       color="secondary"
       className={classes.button}
       startIcon={<AddBoxOutlinedIcon />}
+      onClick={() => event()}
     >
       Přidat
     </Button>
