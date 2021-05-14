@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -44,11 +44,6 @@ export const BasicTable: React.FC = () => {
   const { loading, error, data, refetch } = useMultipleRowsQuery({
     variables: { storage: storage },
   });
-  const [nextId, setNextId] = useState(0);
-  const getNewId = () => {
-    setNextId(nextId + 1);
-    return nextId - 1;
-  };
   const deleteItem = async (id: number, storage: String) => {
     await deleteRow({
       variables: {
@@ -119,7 +114,7 @@ export const BasicTable: React.FC = () => {
         />
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table">
-            <RowHead nextId={9} storage={storage} />
+            <RowHead nextId={data.multipleRows.length} storage={storage} />
             <TableBody>
               {data !== undefined
                 ? LoadRows(data.multipleRows)

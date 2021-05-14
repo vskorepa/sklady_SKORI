@@ -35,6 +35,8 @@ type EditRowProps = {
 export const AddRow: React.FC<EditRowProps> = ({ nextId, storage }) => {
   const [addRow] = useAddSingleRowMutation();
 
+  console.log(nextId);
+
   const {
     register,
     handleSubmit,
@@ -42,7 +44,8 @@ export const AddRow: React.FC<EditRowProps> = ({ nextId, storage }) => {
   } = useForm<Row>();
   const onSubmit = (data: Row) => {
     console.log(errors);
-    if (!errors) {
+    console.log(data);
+    if (errors) {
       addItem(data);
       handleClose();
     }
@@ -89,7 +92,7 @@ export const AddRow: React.FC<EditRowProps> = ({ nextId, storage }) => {
             <input
               defaultValue=""
               type="text"
-              {...(register("name"), { required: true })}
+              {...register("name", { required: true })}
               id="name"
             />
             {errors.name && <p>Vyplňte toto pole</p>}
@@ -97,7 +100,7 @@ export const AddRow: React.FC<EditRowProps> = ({ nextId, storage }) => {
             <input
               defaultValue=""
               type="text"
-              {...(register("code"), { required: true })}
+              {...register("code", { required: true })}
             />
             <label>popis</label>
             <input defaultValue="" type="text" {...register("description")} />
