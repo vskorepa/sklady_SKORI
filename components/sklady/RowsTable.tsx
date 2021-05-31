@@ -51,7 +51,7 @@ export const BasicTable: React.FC = () => {
         id: id,
       },
     });
-    refetch();
+    refetch({ variables: { storage: storage } });
   };
 
   const plusCount = async (id: number, count: number, storage: String) => {
@@ -115,20 +115,7 @@ export const BasicTable: React.FC = () => {
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table">
             <RowHead nextId={data.multipleRows.length} storage={storage} />
-            <TableBody>
-              {data !== undefined
-                ? LoadRows(data.multipleRows)
-                : LoadRows([
-                    {
-                      code: "",
-                      name: "",
-                      count: 0,
-                      description: "",
-                      id: 0,
-                      storage: "Dusejov",
-                    },
-                  ])}
-            </TableBody>
+            <TableBody>{LoadRows(data?.multipleRows)}</TableBody>
           </Table>
         </TableContainer>
       </div>

@@ -95,7 +95,7 @@ export const AddRow: React.FC<EditRowProps> = ({ nextId, storage }) => {
               {...register("name", { required: true })}
               id="name"
             />
-            {errors.name && <p>Vyplňte toto pole</p>}
+            {errors.name ?? <p>Vyplňte toto pole</p>}
             <label>kód</label>
             <input
               defaultValue=""

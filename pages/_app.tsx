@@ -24,6 +24,7 @@ export default function MyApp(props: AppProps) {
     }
   }, []);
 
+
   return (
     <ApolloProvider client={apolloClient}>
       <CacheProvider value={cache}>

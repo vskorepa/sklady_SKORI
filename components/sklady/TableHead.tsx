@@ -52,7 +52,7 @@ export const RowHead: React.FC<RowHeadProps> = ({ nextId, storage }) => {
         <TableCell className={classes.tableheadtext} align="center"></TableCell>
 
         <TableCell className={classes.tableheadtext} align="right">
-          <AddRow nextId={nextId} storage={storage} />
+          <AddRow key={nextId} nextId={nextId} storage={storage} />
         </TableCell>
         <TableCell
           className={classes.tableheadtext}
