@@ -1,13 +1,14 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import TopNav  from '../components/Header/TopNav'
+import{AddButton}  from '../components/atomic/Buttons'
 
 
-describe('TopNav', () => {
+describe('AddButton', () => {
   
   it('renders the html we want',  () => {
-    const component = renderer.create(<TopNav />)
+    const component = renderer.create(<AddButton event={()=>{}} />)
+    console.log(component.toJSON());
     expect(component.toJSON()).toMatchSnapshot()
   })
 
