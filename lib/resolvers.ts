@@ -4,6 +4,7 @@ import { db } from "../firebase-config";
 
 const Query: Required<QueryResolvers<ResolverContext>> = {
   multipleRows: async (_parent, args, _context, _info) => {
+    // await console.log((await db.ref(args.storage).get()).val());
     return await (await db.ref(args.storage).get()).val();
   },
   singleRow: async (_parent, args, _context, _info) => {
