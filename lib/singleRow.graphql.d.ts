@@ -5,116 +5,111 @@ import * as __SchemaTypes__ from '../node_modules/@types/graphql-let/__generated
 import * as Apollo from '@apollo/client';
 export declare type Maybe<T> = T | null;
 export declare type Exact<T extends {
-    [key: string]: unknown;
-}> = {
-    [K in keyof T]: T[K];
-};
-export declare type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-    [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export declare type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-    [SubKey in K]: Maybe<T[SubKey]>;
-};
+  [key: string]: unknown;
+}> = { [K in keyof T]: T[K] };
+export declare type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export declare type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
+
 export declare type Scalars = {
-    ID: string;
-    String: string;
-    Boolean: boolean;
-    Int: number;
-    Float: number;
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
 };
 export declare type Mutation = {
-    __typename?: 'Mutation';
-    AddSingleRow: Row;
-    deleteSingleRow: Row;
-    editCount: Row;
+  __typename?: 'Mutation';
+  AddSingleRow: Row;
+  deleteSingleRow: Row;
+  editCount: Row;
 };
 export declare type MutationAddSingleRowArgs = {
-    id: Scalars['Int'];
-    name: Scalars['String'];
-    code: Scalars['String'];
-    description?: Maybe<Scalars['String']>;
-    count: Scalars['Int'];
-    storage: Scalars['String'];
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  code: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  count: Scalars['Int'];
+  storage: Scalars['String'];
 };
 export declare type MutationDeleteSingleRowArgs = {
-    id: Scalars['Int'];
-    storage: Scalars['String'];
+  id: Scalars['Int'];
+  storage: Scalars['String'];
 };
 export declare type MutationEditCountArgs = {
-    id: Scalars['Int'];
-    count: Scalars['Int'];
-    storage: Scalars['String'];
+  id: Scalars['Int'];
+  count: Scalars['Int'];
+  storage: Scalars['String'];
 };
 export declare type Query = {
-    __typename?: 'Query';
-    singleRow: Row;
-    multipleRows: Array<Row>;
+  __typename?: 'Query';
+  singleRow: Row;
+  multipleRows: Array<Row>;
 };
 export declare type QuerySingleRowArgs = {
-    id: Scalars['Int'];
-    storage: Scalars['String'];
+  id: Scalars['Int'];
+  storage: Scalars['String'];
 };
 export declare type QueryMultipleRowsArgs = {
-    storage: Scalars['String'];
+  storage: Scalars['String'];
 };
 export declare type Row = {
-    __typename?: 'Row';
-    id: Scalars['Int'];
-    name: Scalars['String'];
-    code: Scalars['String'];
-    description?: Maybe<Scalars['String']>;
-    count: Scalars['Int'];
-    storage: Scalars['String'];
+  __typename?: 'Row';
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  code: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  count: Scalars['Int'];
+  storage: Scalars['String'];
 };
 export declare type SingleRowQueryVariables = __SchemaTypes__.Exact<{
-    id: __SchemaTypes__.Scalars['Int'];
-    storage: __SchemaTypes__.Scalars['String'];
+  id: __SchemaTypes__.Scalars['Int'];
+  storage: __SchemaTypes__.Scalars['String'];
 }>;
 export declare type SingleRowQuery = ({
-    __typename?: 'Query';
+  __typename?: 'Query';
 } & {
-    singleRow: ({
-        __typename?: 'Row';
-    } & Pick<__SchemaTypes__.Row, 'id' | 'name' | 'code' | 'count' | 'description'>);
+  singleRow: ({
+    __typename?: 'Row';
+  } & Pick<__SchemaTypes__.Row, 'id' | 'name' | 'code' | 'count' | 'description'>);
 });
 export declare type AddSingleRowMutationVariables = __SchemaTypes__.Exact<{
-    id: __SchemaTypes__.Scalars['Int'];
-    name: __SchemaTypes__.Scalars['String'];
-    code: __SchemaTypes__.Scalars['String'];
-    description?: __SchemaTypes__.Maybe<__SchemaTypes__.Scalars['String']>;
-    count: __SchemaTypes__.Scalars['Int'];
-    storage: __SchemaTypes__.Scalars['String'];
+  id: __SchemaTypes__.Scalars['Int'];
+  name: __SchemaTypes__.Scalars['String'];
+  code: __SchemaTypes__.Scalars['String'];
+  description?: __SchemaTypes__.Maybe<__SchemaTypes__.Scalars['String']>;
+  count: __SchemaTypes__.Scalars['Int'];
+  storage: __SchemaTypes__.Scalars['String'];
 }>;
 export declare type AddSingleRowMutation = ({
-    __typename?: 'Mutation';
+  __typename?: 'Mutation';
 } & {
-    AddSingleRow: ({
-        __typename?: 'Row';
-    } & Pick<__SchemaTypes__.Row, 'id' | 'name' | 'code' | 'count' | 'description'>);
+  AddSingleRow: ({
+    __typename?: 'Row';
+  } & Pick<__SchemaTypes__.Row, 'id' | 'name' | 'code' | 'count' | 'description'>);
 });
 export declare type DeleteSingleRowMutationVariables = __SchemaTypes__.Exact<{
-    id: __SchemaTypes__.Scalars['Int'];
-    storage: __SchemaTypes__.Scalars['String'];
+  id: __SchemaTypes__.Scalars['Int'];
+  storage: __SchemaTypes__.Scalars['String'];
 }>;
 export declare type DeleteSingleRowMutation = ({
-    __typename?: 'Mutation';
+  __typename?: 'Mutation';
 } & {
-    deleteSingleRow: ({
-        __typename?: 'Row';
-    } & Pick<__SchemaTypes__.Row, 'id'>);
+  deleteSingleRow: ({
+    __typename?: 'Row';
+  } & Pick<__SchemaTypes__.Row, 'id'>);
 });
 export declare type EditCountMutationVariables = __SchemaTypes__.Exact<{
-    id: __SchemaTypes__.Scalars['Int'];
-    count: __SchemaTypes__.Scalars['Int'];
-    storage: __SchemaTypes__.Scalars['String'];
+  id: __SchemaTypes__.Scalars['Int'];
+  count: __SchemaTypes__.Scalars['Int'];
+  storage: __SchemaTypes__.Scalars['String'];
 }>;
 export declare type EditCountMutation = ({
-    __typename?: 'Mutation';
+  __typename?: 'Mutation';
 } & {
-    editCount: ({
-        __typename?: 'Row';
-    } & Pick<__SchemaTypes__.Row, 'id' | 'count'>);
+  editCount: ({
+    __typename?: 'Row';
+  } & Pick<__SchemaTypes__.Row, 'id' | 'count'>);
 });
 export declare const SingleRowDocument: Apollo.DocumentNode;
 /**
@@ -134,6 +129,7 @@ export declare const SingleRowDocument: Apollo.DocumentNode;
  *   },
  * });
  */
+
 export declare function useSingleRowQuery(baseOptions: Apollo.QueryHookOptions<SingleRowQuery, SingleRowQueryVariables>): Apollo.QueryResult<SingleRowQuery, any>;
 export declare function useSingleRowLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SingleRowQuery, SingleRowQueryVariables>): Apollo.QueryTuple<SingleRowQuery, any>;
 export declare type SingleRowQueryHookResult = ReturnType<typeof useSingleRowQuery>;
@@ -163,6 +159,7 @@ export declare type AddSingleRowMutationFn = Apollo.MutationFunction<AddSingleRo
  *   },
  * });
  */
+
 export declare function useAddSingleRowMutation(baseOptions?: Apollo.MutationHookOptions<AddSingleRowMutation, AddSingleRowMutationVariables>): Apollo.MutationTuple<AddSingleRowMutation, any>;
 export declare type AddSingleRowMutationHookResult = ReturnType<typeof useAddSingleRowMutation>;
 export declare type AddSingleRowMutationResult = Apollo.MutationResult<AddSingleRowMutation>;
@@ -187,6 +184,7 @@ export declare type DeleteSingleRowMutationFn = Apollo.MutationFunction<DeleteSi
  *   },
  * });
  */
+
 export declare function useDeleteSingleRowMutation(baseOptions?: Apollo.MutationHookOptions<DeleteSingleRowMutation, DeleteSingleRowMutationVariables>): Apollo.MutationTuple<DeleteSingleRowMutation, any>;
 export declare type DeleteSingleRowMutationHookResult = ReturnType<typeof useDeleteSingleRowMutation>;
 export declare type DeleteSingleRowMutationResult = Apollo.MutationResult<DeleteSingleRowMutation>;
@@ -212,6 +210,7 @@ export declare type EditCountMutationFn = Apollo.MutationFunction<EditCountMutat
  *   },
  * });
  */
+
 export declare function useEditCountMutation(baseOptions?: Apollo.MutationHookOptions<EditCountMutation, EditCountMutationVariables>): Apollo.MutationTuple<EditCountMutation, any>;
 export declare type EditCountMutationHookResult = ReturnType<typeof useEditCountMutation>;
 export declare type EditCountMutationResult = Apollo.MutationResult<EditCountMutation>;

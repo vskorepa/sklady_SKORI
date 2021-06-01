@@ -4,5 +4,5 @@ export type Row = {
   description?: string;
   count: number;
   name: string;
-  storage: String;
+  storage: string;
 };

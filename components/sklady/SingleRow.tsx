@@ -13,9 +13,9 @@ const useStyles = makeStyles({
 });
 
 type RowProps = Row & {
-  deleteItem: (id: number, storage: String) => void;
-  pluscount: (id: number, count: number, storage: String) => void;
-  minuscount: (id: number, count: number, storage: String) => void;
+  deleteItem: (id: number, storage: string) => void;
+  pluscount: (id: number, count: number, storage: string) => void;
+  minuscount: (id: number, count: number, storage: string) => void;
 };
 
 export const SingleRow: React.FC<RowProps> = ({

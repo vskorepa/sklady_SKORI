@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 });
 type RowHeadProps = {
   nextId: number;
-  storage: String;
+  storage: string;
 };
 export const RowHead: React.FC<RowHeadProps> = ({ nextId, storage }) => {
   const classes = useStyles();

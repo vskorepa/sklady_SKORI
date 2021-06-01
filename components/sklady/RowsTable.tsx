@@ -44,7 +44,7 @@ export const BasicTable: React.FC = () => {
   const { loading, error, data, refetch } = useMultipleRowsQuery({
     variables: { storage: storage },
   });
-  const deleteItem = async (id: number, storage: String) => {
+  const deleteItem = async (id: number, storage: string) => {
     await deleteRow({
       variables: {
         storage: storage,
@@ -54,7 +54,7 @@ export const BasicTable: React.FC = () => {
     refetch({ variables: { storage: storage } });
   };
 
-  const plusCount = async (id: number, count: number, storage: String) => {
+  const plusCount = async (id: number, count: number, storage: string) => {
     await editCount({
       variables: {
         storage: storage,
@@ -63,7 +63,7 @@ export const BasicTable: React.FC = () => {
       },
     });
   };
-  const minusCount = async (id: number, count: number, storage: String) => {
+  const minusCount = async (id: number, count: number, storage: string) => {
     await editCount({
       variables: {
         storage: storage,
@@ -114,8 +114,8 @@ export const BasicTable: React.FC = () => {
         />
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table">
-            <RowHead nextId={data.multipleRows.length} storage={storage} />
-            <TableBody>{LoadRows(data?.multipleRows)}</TableBody>
+            <RowHead nextId={data?.multipleRows.length ?? 0} storage={storage} />
+            <TableBody>{LoadRows(data?.multipleRows ?? [])}</TableBody>
           </Table>
         </TableContainer>
       </div>

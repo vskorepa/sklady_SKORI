@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 type EditRowProps = {
   nextId: number;
-  storage: String;
+  storage: string;
 };
 export const AddRow: React.FC<EditRowProps> = ({ nextId, storage }) => {
   const [addRow] = useAddSingleRowMutation();

@@ -5,77 +5,72 @@ import * as __SchemaTypes__ from '../node_modules/@types/graphql-let/__generated
 import * as Apollo from '@apollo/client';
 export declare type Maybe<T> = T | null;
 export declare type Exact<T extends {
-    [key: string]: unknown;
-}> = {
-    [K in keyof T]: T[K];
-};
-export declare type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-    [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export declare type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-    [SubKey in K]: Maybe<T[SubKey]>;
-};
+  [key: string]: unknown;
+}> = { [K in keyof T]: T[K] };
+export declare type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export declare type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
+
 export declare type Scalars = {
-    ID: string;
-    String: string;
-    Boolean: boolean;
-    Int: number;
-    Float: number;
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
 };
 export declare type Mutation = {
-    __typename?: 'Mutation';
-    AddSingleRow: Row;
-    deleteSingleRow: Row;
-    editCount: Row;
+  __typename?: 'Mutation';
+  AddSingleRow: Row;
+  deleteSingleRow: Row;
+  editCount: Row;
 };
 export declare type MutationAddSingleRowArgs = {
-    id: Scalars['Int'];
-    name: Scalars['String'];
-    code: Scalars['String'];
-    description?: Maybe<Scalars['String']>;
-    count: Scalars['Int'];
-    storage: Scalars['String'];
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  code: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  count: Scalars['Int'];
+  storage: Scalars['String'];
 };
 export declare type MutationDeleteSingleRowArgs = {
-    id: Scalars['Int'];
-    storage: Scalars['String'];
+  id: Scalars['Int'];
+  storage: Scalars['String'];
 };
 export declare type MutationEditCountArgs = {
-    id: Scalars['Int'];
-    count: Scalars['Int'];
-    storage: Scalars['String'];
+  id: Scalars['Int'];
+  count: Scalars['Int'];
+  storage: Scalars['String'];
 };
 export declare type Query = {
-    __typename?: 'Query';
-    singleRow: Row;
-    multipleRows: Array<Row>;
+  __typename?: 'Query';
+  singleRow: Row;
+  multipleRows: Array<Row>;
 };
 export declare type QuerySingleRowArgs = {
-    id: Scalars['Int'];
-    storage: Scalars['String'];
+  id: Scalars['Int'];
+  storage: Scalars['String'];
 };
 export declare type QueryMultipleRowsArgs = {
-    storage: Scalars['String'];
+  storage: Scalars['String'];
 };
 export declare type Row = {
-    __typename?: 'Row';
-    id: Scalars['Int'];
-    name: Scalars['String'];
-    code: Scalars['String'];
-    description?: Maybe<Scalars['String']>;
-    count: Scalars['Int'];
-    storage: Scalars['String'];
+  __typename?: 'Row';
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  code: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  count: Scalars['Int'];
+  storage: Scalars['String'];
 };
 export declare type MultipleRowsQueryVariables = __SchemaTypes__.Exact<{
-    storage: __SchemaTypes__.Scalars['String'];
+  storage: __SchemaTypes__.Scalars['String'];
 }>;
 export declare type MultipleRowsQuery = ({
-    __typename?: 'Query';
+  __typename?: 'Query';
 } & {
-    multipleRows: Array<({
-        __typename?: 'Row';
-    } & Pick<__SchemaTypes__.Row, 'name' | 'id' | 'code' | 'count' | 'description'>)>;
+  multipleRows: Array<({
+    __typename?: 'Row';
+  } & Pick<__SchemaTypes__.Row, 'name' | 'id' | 'code' | 'count' | 'description'>)>;
 });
 export declare const MultipleRowsDocument: Apollo.DocumentNode;
 /**
@@ -94,6 +89,7 @@ export declare const MultipleRowsDocument: Apollo.DocumentNode;
  *   },
  * });
  */
+
 export declare function useMultipleRowsQuery(baseOptions: Apollo.QueryHookOptions<MultipleRowsQuery, MultipleRowsQueryVariables>): Apollo.QueryResult<MultipleRowsQuery, any>;
 export declare function useMultipleRowsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MultipleRowsQuery, MultipleRowsQueryVariables>): Apollo.QueryTuple<MultipleRowsQuery, any>;
 export declare type MultipleRowsQueryHookResult = ReturnType<typeof useMultipleRowsQuery>;
