@@ -6,12 +6,3 @@ export type Row = {
   name: string;
   storage: string;
 };
-
-export const Placeholder = {
-  id: 0,
-  code: "",
-  count: 0,
-  description: "",
-  name: "",
-  storage: "Dusejov"
-}

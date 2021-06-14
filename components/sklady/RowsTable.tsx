@@ -8,11 +8,10 @@ import {
   useDeleteSingleRowMutation,
   useEditCountMutation,
 } from "../../__generated__/lib/singleRow.graphql";
-import {useMultipleRowsQuery } from "../../lib/multipleRows.graphql";
+import { Row, useMultipleRowsQuery } from "../../lib/multipleRows.graphql";
 import { SingleRow } from "./SingleRow";
 import { RowHead } from "./TableHead";
 import { StorageSelect } from "./StorageSelect";
-import { Row , Placeholder } from "../types";
 
 const useStyles = makeStyles({
   table: {
@@ -52,7 +51,7 @@ export const BasicTable: React.FC = () => {
         id: id,
       },
     });
-    refetch();
+    refetch({ variables: { storage: storage } });
   };
 
   const plusCount = async (id: number, count: number, storage: string) => {
@@ -76,7 +75,7 @@ export const BasicTable: React.FC = () => {
 
   const LoadRows = (rowdata: [Row]) => {
     return rowdata
-      .filter((x) => x !== null)
+      .filter((x) => !!x)
       .map((item) => (
         <SingleRow
           key={item.id}
@@ -116,7 +115,7 @@ export const BasicTable: React.FC = () => {
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="simple table">
             <RowHead nextId={data?.multipleRows.length ?? 0} storage={storage} />
-            <TableBody>{LoadRows(data?.multipleRows ?? Placeholder)}</TableBody>
+            <TableBody>{LoadRows(data?.multipleRows ?? [])}</TableBody>
           </Table>
         </TableContainer>
       </div>
