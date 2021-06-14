@@ -8,7 +8,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { EditButton } from "../atomic/Buttons";
-import { createStyles, makeStyles, Theme } from "@material-ui/core";
+import { createStyles, makeStyles, Theme, FormControl, TextField, Grid   } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { MultipleRowsDocument } from "../../lib/multipleRows.graphql";
 
@@ -81,24 +81,33 @@ export const EditRow: React.FC<Row> = ({
       >
         <DialogTitle id="DialogTitle">ÚPRAVA POLOŽKY</DialogTitle>
         <DialogContent>
-          <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-            <label>Název</label>
-            <input defaultValue={name} type="text" {...register("name")} />
-            <label>kód</label>
-            <input defaultValue={code} type="text" {...register("code")} />
-            <label>popis</label>
-            <input
+          <Grid container spacing={3}  onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+          <Grid item xs={12} sm={6}>
+          <TextField fullWidth autoFocus={true} label="Název"  id="nazev"  defaultValue={name} type="text" {...register("name")} />
+
+          </Grid>
+          <Grid item xs={12} sm={6}>            <TextField fullWidth label="Kód" id="kod" defaultValue={code} type="text" {...register("code")} />
+</Grid>
+            <Grid item xs={12} sm={6}>            <TextField fullWidth
+            label="Popis"
+            id="popis"
               defaultValue={description ?? ""}
               type="text"
               {...register("description")}
             />
-            <label>počet</label>
-            <input
+</Grid>
+
+                      <Grid item xs={12} sm={6}>            <TextField
+            fullWidth
+            label="Počet"
+            id="pocet"
               defaultValue={count}
               type="number"
               min={0}
               {...register("count", { valueAsNumber: true })}
             />
+</Grid>
+
             <input
               hidden
               defaultValue={id}
@@ -107,7 +116,7 @@ export const EditRow: React.FC<Row> = ({
             <Button color={"primary"} type="submit">
               Upravit
             </Button>
-          </form>
+          </Grid>
         </DialogContent>
         <DialogActions></DialogActions>
       </Dialog>
