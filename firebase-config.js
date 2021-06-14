@@ -5,8 +5,8 @@ if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL:
-      "https://nextjs-start-default-rtdb.europe-west1.firebasedatabase.app",
-    app: "testApp",
+      "https://sklady-skori-default-rtdb.europe-west1.firebasedatabase.app",
+    app: "sklady-skori",
   });
 }
 

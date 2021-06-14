@@ -83,6 +83,16 @@ export const EditRow: React.FC<Row> = ({
         <DialogContent>
           <Grid container spacing={3}  onSubmit={handleSubmit(onSubmit)} className={classes.form}>
           <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="lastName"
+            name="lastName"
+            label="Last name"
+            fullWidth
+            autoComplete="family-name"
+          />
+        </Grid>
+          <Grid item xs={12} sm={6}>
           <TextField fullWidth autoFocus={true} label="Název"  id="nazev"  defaultValue={name} type="text" {...register("name")} />
 
           </Grid>
