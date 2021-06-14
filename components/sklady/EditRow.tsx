@@ -12,11 +12,11 @@ import {
   createStyles,
   makeStyles,
   Theme,
-  FormControl,
   TextField,
+  Slider,
   Grid,
 } from "@material-ui/core";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { MultipleRowsDocument } from "../../lib/multipleRows.graphql";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,16 +24,26 @@ const useStyles = makeStyles((theme: Theme) =>
     form: {
       display: "flex",
       flexDirection: "column",
+      minHeight: "30vh",
       margin: "auto",
-      width: "fit-content",
     },
-    formControl: {
-      marginTop: theme.spacing(2),
-      minWidth: 120,
+    input: {
+      margin: "10px",
+      width: "100%"
+    },
+    grid:{
+      margin: "10px",
+      alignSelf: "center",
+      width: "80%"
     },
     formControlLabel: {
       marginTop: theme.spacing(1),
     },
+    modal:{
+      height: 100,
+      color: "red"
+      
+    }
   })
 );
 
@@ -47,8 +57,9 @@ export const EditRow: React.FC<Row> = ({
 }) => {
   const [addRow] = useAddSingleRowMutation();
 
-  const { register, handleSubmit } = useForm<Row>();
+  const {register, handleSubmit,control } = useForm<Row>();
   const onSubmit = (data: Row) => {
+    console.log(data)
     addItem(data);
     handleClose();
   };
@@ -88,44 +99,75 @@ export const EditRow: React.FC<Row> = ({
       >
         <DialogTitle id="DialogTitle">ÚPRAVA POLOŽKY</DialogTitle>
         <DialogContent>
-          <Grid
-            container
-            spacing={3}
+          <form
             onSubmit={handleSubmit(onSubmit)}
             className={classes.form}
           >
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                autoFocus={true}
+            <Grid className={classes.grid}>
+            <Controller
+              name="name"
+              control={control}
+              defaultValue={name}
+              rules={{required: "Název je povinný"}}
+              render={({field: {onChange, value},fieldState: { error }})=>(
+                <TextField
                 label="Název"
-                id="nazev"
-                defaultValue={name}
+                className={classes.input}
+                value={value}
                 type="text"
-                {...register("name")}
+                onChange={onChange}
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
+              )}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
-              {" "}
-              <TextField
-                fullWidth
+            <Grid className={classes.grid}>
+            <Controller
+              name="code"
+              control={control}
+              defaultValue={code}
+              rules={{required: "Kód je povinný"}}
+              render={({field: {onChange, value}, fieldState: { error }})=>(
+                <TextField
                 label="Kód"
-                id="kod"
-                defaultValue={code}
+                className={classes.input}
+                value={value}
                 type="text"
-                {...register("code")}
+                onChange={onChange}
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
+              )}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
-              {" "}
-              <TextField
-                fullWidth
+
+            <Grid className={classes.grid}>
+            <Controller
+              name="description"
+              control={control}
+              defaultValue={description}
+              render={({field: {onChange, value}, fieldState: { error }})=>(
+                <TextField
                 label="Popis"
-                id="popis"
-                defaultValue={description ?? ""}
+                className={classes.input}
+                value={value}
                 type="text"
-                {...register("description")}
+                onChange={onChange}
+                error={!!error}
+                helperText={error ? error.message : null}
               />
+              )}
+              />
+            </Grid> 
+
+            <Grid className={classes.grid}>
+            <input
+                type="number"
+                className={classes.input}
+                defaultValue={count}
+              {...register("count", { valueAsNumber: true })}
+            /> 
             </Grid>
 
             <input
@@ -136,7 +178,7 @@ export const EditRow: React.FC<Row> = ({
             <Button color={"primary"} type="submit">
               Upravit
             </Button>
-          </Grid>
+          </form>
         </DialogContent>
         <DialogActions></DialogActions>
       </Dialog>

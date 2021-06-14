@@ -7,17 +7,20 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { AddButton } from "../atomic/Buttons";
-import { createStyles, makeStyles, Theme } from "@material-ui/core";
-import { useForm } from "react-hook-form";
-import { MultipleRowsDocument } from "../../lib/multipleRows.graphql";
+import { createStyles, makeStyles, Theme,  FormControl,
+  TextField,
+  Grid,
+ } from "@material-ui/core";
+ import { useForm, Controller } from "react-hook-form";
+ import { MultipleRowsDocument } from "../../lib/multipleRows.graphql";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     form: {
       display: "flex",
       flexDirection: "column",
+      minHeight: "30vh",
       margin: "auto",
-      width: "fit-content",
     },
     formControl: {
       marginTop: theme.spacing(2),
@@ -25,6 +28,15 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     formControlLabel: {
       marginTop: theme.spacing(1),
+    },
+    input: {
+      margin: "10px",
+      width: "100%"
+    },
+    grid:{
+      margin: "10px",
+      alignSelf: "center",
+      width: "80%"
     },
   })
 );
@@ -37,18 +49,10 @@ export const AddRow: React.FC<EditRowProps> = ({ nextId, storage }) => {
 
   console.log(nextId);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Row>();
+  const {register, handleSubmit,control } = useForm<Row>();
   const onSubmit = (data: Row) => {
-    console.log(errors);
-    console.log(data);
-    if (errors) {
       addItem(data);
       handleClose();
-    }
   };
   const addItem = async (item: Row) => {
     await addRow({
@@ -87,30 +91,79 @@ export const AddRow: React.FC<EditRowProps> = ({ nextId, storage }) => {
       >
         <DialogTitle id="DialogTitle">VYTVOŘENÍ POLOŽKY</DialogTitle>
         <DialogContent>
-          <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-            <label>Název</label>
-            <input
+          
+        <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={classes.form}
+          >
+            <Grid className={classes.grid}>
+            <Controller
+              name="name"
+              control={control}
               defaultValue=""
-              type="text"
-              {...register("name", { required: true })}
-              id="name"
-            />
-            {errors.name ?? <p>Vyplňte toto pole</p>}
-            <label>kód</label>
-            <input
+              rules={{required: "Název je povinný"}}
+              render={({field: {onChange, value},fieldState: { error }})=>(
+                <TextField
+                label="Název"
+                className={classes.input}
+                value={value}
+                type="text"
+                onChange={onChange}
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
+              )}
+              />
+            </Grid>
+            <Grid className={classes.grid}>
+            <Controller
+              name="code"
+              control={control}
               defaultValue=""
-              type="text"
-              {...register("code", { required: true })}
-            />
-            <label>popis</label>
-            <input defaultValue="" type="text" {...register("description")} />
-            <label>počet</label>
+              rules={{required: "Kód je povinný"}}
+              render={({field: {onChange, value}, fieldState: { error }})=>(
+                <TextField
+                label="Kód"
+                className={classes.input}
+                value={value}
+                type="text"
+                onChange={onChange}
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
+              )}
+              />
+            </Grid>
+
+            <Grid className={classes.grid}>
+            <Controller
+              name="description"
+              control={control}
+              defaultValue=""
+              render={({field: {onChange, value}, fieldState: { error }})=>(
+                <TextField
+                label="Popis"
+                className={classes.input}
+                value={value}
+                type="text"
+                onChange={onChange}
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
+              )}
+              />
+            </Grid> 
+
+            <Grid className={classes.grid}>
             <input
-              defaultValue={0}
-              type="number"
-              min={0}
-              {...register("count", { valueAsNumber: true, required: true })}
-            />
+                type="number"
+                className={classes.input}
+                defaultValue={0}
+              {...register("count", { valueAsNumber: true })}
+            /> 
+            </Grid>
+
+
             <input
               hidden
               defaultValue={nextId}

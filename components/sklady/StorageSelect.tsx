@@ -49,7 +49,6 @@ export const StorageSelect: React.FC<StorageSelectProps> = ({
           <MenuItem value="Dusejov">Dusejov</MenuItem>
           <MenuItem value="Hradec">Hradec</MenuItem>
           <MenuItem value="Esatrans">Esatrans</MenuItem>
-          <MenuItem value="rows">rows</MenuItem>
         </Select>
       </FormControl>
     </div>
