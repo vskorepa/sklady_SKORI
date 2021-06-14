@@ -128,19 +128,6 @@ export const EditRow: React.FC<Row> = ({
               />
             </Grid>
 
-            <Grid item xs={12} sm={6}>
-              {" "}
-              <TextField
-                fullWidth
-                label="Počet"
-                id="pocet"
-                defaultValue={count}
-                type="number"
-                min={0}
-                {...register("count", { valueAsNumber: true })}
-              />
-            </Grid>
-
             <input
               hidden
               defaultValue={id}
@@ -156,3 +143,5 @@ export const EditRow: React.FC<Row> = ({
     </div>
   );
 };
+
+
