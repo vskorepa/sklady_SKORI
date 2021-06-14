@@ -8,7 +8,14 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { EditButton } from "../atomic/Buttons";
-import { createStyles, makeStyles, Theme, FormControl, TextField, Grid   } from "@material-ui/core";
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+  FormControl,
+  TextField,
+  Grid,
+} from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { MultipleRowsDocument } from "../../lib/multipleRows.graphql";
 
@@ -81,32 +88,45 @@ export const EditRow: React.FC<Row> = ({
       >
         <DialogTitle id="DialogTitle">ÚPRAVA POLOŽKY</DialogTitle>
         <DialogContent>
-          <Grid container spacing={3}  onSubmit={handleSubmit(onSubmit)} className={classes.form}>
-          <Grid item xs={12} sm={6}>
-          <TextField fullWidth autoFocus={true} label="Název"  id="nazev"  defaultValue={name} type="text" {...register("name")} />
-
-          </Grid>
-          <Grid item xs={12} sm={6}>            <TextField fullWidth label="Kód" id="kod" defaultValue={code} type="text" {...register("code")} />
-</Grid>
-            <Grid item xs={12} sm={6}>            <TextField fullWidth
-            label="Popis"
-            id="popis"
-              defaultValue={description ?? ""}
-              type="text"
-              {...register("description")}
-            />
-</Grid>
-
-                      <Grid item xs={12} sm={10}>            <TextField
-            fullWidth
-            label="Počet"
-            id="pocet"
-              defaultValue={count}
-              type="number"
-              min={0}
-              {...register("count", { valueAsNumber: true })}
-            />
-</Grid>
+          <Grid
+            container
+            spacing={3}
+            onSubmit={handleSubmit(onSubmit)}
+            className={classes.form}
+          >
+            <Grid item xs={12} sm={6}>
+              <TextField
+                fullWidth
+                autoFocus={true}
+                label="Název"
+                id="nazev"
+                defaultValue={name}
+                type="text"
+                {...register("name")}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              {" "}
+              <TextField
+                fullWidth
+                label="Kód"
+                id="kod"
+                defaultValue={code}
+                type="text"
+                {...register("code")}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              {" "}
+              <TextField
+                fullWidth
+                label="Popis"
+                id="popis"
+                defaultValue={description ?? ""}
+                type="text"
+                {...register("description")}
+              />
+            </Grid>
 
             <input
               hidden
@@ -123,3 +143,5 @@ export const EditRow: React.FC<Row> = ({
     </div>
   );
 };
+
+
