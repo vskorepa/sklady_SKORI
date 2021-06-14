@@ -97,7 +97,7 @@ export const EditRow: React.FC<Row> = ({
             />
 </Grid>
 
-                      <Grid item xs={12} sm={6}>            <TextField
+                      <Grid item xs={12} sm={10}>            <TextField
             fullWidth
             label="Počet"
             id="pocet"
